@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Logistics - Hakkımızda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0066a4;
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        nav ul li {
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: #444;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #0066a4;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        nav ul li:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .page-title {
+            color: #0066a4;
+            font-size: 28px;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0066a4;
+        }
+        
+        /* About Us Content */
+        .about-content {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .about-image {
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .timeline-section h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #0066a4;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #0066a4;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            position: relative;
+            width: 45%;
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            left: 55%;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            width: 100px;
+            top: -8px;
+            text-align: center;
+            font-weight: bold;
+            color: #0066a4;
+            font-size: 16px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-year {
+            right: -100px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-year {
+            left: -100px;
+        }
+        
+        .timeline-content p {
+            color: #555;
+            line-height: 1.4;
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        /* Mission & Vision Boxes */
+        .mission-vision {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .box {
+            flex: 1;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+        .box-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .box-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #eef5fc;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .box h3 {
+            color: #0066a4;
+            font-size: 22px;
+        }
+        
+        .box p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #f1f1f1;
+            padding: 30px 40px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #0066a4;
+        }
+        
+        .footer-icon {
+            margin-right: 5px;
+            color: #0066a4;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                max-width: 100%;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                left: 60px !important;
+            }
+            
+            .timeline-year {
+                left: 0 !important;
+                right: auto !important;
+                top: -30px;
+            }
+            
+            .mission-vision {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="18" fill="#0066a4" />
+                <path d="M10,20 L30,20 M20,10 L20,30" stroke="white" stroke-width="4" stroke-linecap="round" />
+                <path d="M15,15 L25,25 M15,25 L25,15" stroke="white" stroke-width="2" stroke-linecap="round" />
+            </svg>
+            <div class="logo-text">My Logistics</div>
+        </div>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Kurumsal</a>
+                    <div class="dropdown-content">
+                        <a href="#">Hakkımızda</a>
+                        <a href="#">Tarihçe</a>
+                        <a href="#">Vizyonumuz</a>
+                        <a href="#">Misyonumuz</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">Hizmetlerimiz</a>
+                    <div class="dropdown-content">
+                        <a href="#">Yurt İçi Hizmetler</a>
+                        <a href="#">Yurt Dışı Hizmetler</a>
+                        <a href="#">Depolama Hizmetleri</a>
+                        <a href="#">Özel Çözümler</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">İnsan Kaynakları</a>
+                    <div class="dropdown-content">
+                        <a href="#">İK Politikası</a>
+                        <a href="#">İş Alım Süreçleri</a>
+                        <a href="#">Kariyer Fırsatları</a>
+                        <a href="#">Açık Pozisyonlar</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">İletişim</a>
+                    <div class="dropdown-content">
+                        <a href="#">Ofislerimiz</a>
+                        <a href="#">İletişim Formu</a>
+                        <a href="#">Sık Sorulan Sorular</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="page-title">Hakkımızda</h1>
+        
+        <!-- About Us Content with Image -->
+        <div class="about-content">
+            <div class="about-text">
+                <p>My Logistics, 2005 yılında Türkiye'nin lojistik alanındaki ihtiyaçlarına cevap vermek amacıyla kurulmuştur. Kuruluşumuzdan bu yana, müşteri memnuniyetini ön planda tutarak, yenilikçi çözümlerle lojistik sektöründe örnek bir firma olmayı başardık.</p>
+                <p>Bugün Türkiye'nin birçok noktasında ofislerimiz ve geniş araç filomuzla yurt içi ve yurt dışı lojistik hizmetlerimizi sürdürmekteyiz. Tecrübeli ekibimiz ve modern teknolojik altyapımızla, müşterilerimizin taleplerini en hızlı ve güvenilir şekilde karşılıyoruz.</p>
+                <p>My Logistics olarak, sürdürülebilir büyüme ilkesiyle hareket ediyor, çevreye saygılı ve topluma karşı sorumlu bir şirket olmayı hedefliyoruz. Her geçen gün hizmet kalitemizi yükseltiyor, sektördeki yenilikleri takip ederek müşterilerimize en iyi hizmeti sunuyoruz.</p>
+            </div>
+            <div class="about-image">
+                <img src="/api/placeholder/400/320" alt="My Logistics Ofisi">
+            </div>
+        </div>
+        
+        <!-- Timeline Section -->
+        <div class="timeline-section">
+            <h2>Kilometre Taşlarımız</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2005</div>
+                        <p>My Logistics, İstanbul'da 5 araçlık bir filo ve 10 kişilik ekiple yurt içi taşımacılık hizmeti vermeye başladı.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010</div>
+                        <p>Ankara ve İzmir ofislerimizin açılışıyla birlikte araç filomuz 50'ye ulaştı, yurt dışı taşımacılık hizmetlerimiz başladı.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <p>Avrupa ülkelerine düzenli seferler başlatıldı, 10.000 m² alan üzerine kurulu il
