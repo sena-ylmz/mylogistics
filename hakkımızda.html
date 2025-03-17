@@ -3,157 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hakkımızda - Lojistik Firma</title>
+    <title>Hakkımızda - My Logistics</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
+            margin-top: 80px; /* Add space for fixed header */
         }
         
-        /* Sabit üst menü */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+        /* Fixed Header */
+        header {
             background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 10px 0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .nav {
+            padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            cursor: pointer;
-        }
-        
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background-color: #0052cc;
-            border-radius: 10px;
-            margin-right: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo-icon:before {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: #003d99;
-            transform: rotate(45deg);
-            bottom: -15px;
-            left: 10px;
-        }
-        
-        .logo-icon:after {
-            content: 'L';
-            position: relative;
-            z-index: 2;
+            text-decoration: none;
         }
         
         .logo-text {
             font-size: 24px;
             font-weight: bold;
-            color: #0052cc;
+            color: #0066a4;
         }
         
-        .menu {
+        /* Navigation */
+        nav ul {
             display: flex;
-            list-style-type: none;
+            list-style: none;
+            gap: 20px;
         }
         
-        .menu li {
-            margin-left: 30px;
+        nav ul li {
+            position: relative;
         }
         
-        .menu a {
+        nav ul li a {
+            color: #444;
             text-decoration: none;
+            padding: 8px 12px;
+            font-size: 17px;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: #0066a4;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1;
+            border-radius: 4px;
+        }
+        
+        .dropdown-content a {
             color: #333;
-            font-size: 18px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
         }
         
-        .menu a:hover {
-            color: #0052cc;
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #0066a4;
         }
         
-        /* Ana içerik */
-        .main-content {
-            margin-top: 100px;
-            padding: 50px 0;
+        nav ul li:hover .dropdown-content {
+            display: block;
         }
         
-        .about-section {
+        /* About Content */
+        .about-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 40px;
+        }
+        
+        .about-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 50px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
         }
         
         .about-text {
             flex: 1;
-            padding-right: 40px;
+            padding: 30px;
         }
         
         .about-text h1 {
-            font-size: 32px;
-            color: #0052cc;
+            color: #333;
+            font-size: 28px;
             margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-text h1:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #0066a4;
         }
         
         .about-text p {
-            font-size: 16px;
-            line-height: 1.6;
             color: #555;
-            margin-bottom: 20px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
         
         .about-image {
-            flex: 0 0 40%;
-            max-width: 400px;
-            height: 300px;
-            border-radius: 10px;
+            width: 350px;
+            height: 250px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .about-image img {
@@ -162,261 +155,287 @@
             object-fit: cover;
         }
         
-        /* Zaman çizgisi */
+        /* Timeline */
         .timeline-section {
-            margin: 50px 0;
+            margin: 80px 0;
             position: relative;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeIn 1s forwards 0.3s;
+            transition: opacity 0.6s, transform 0.6s;
         }
         
-        .timeline-title {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 28px;
-            color: #333;
+        .timeline-section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .timeline {
             position: relative;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
-        .timeline::after {
+        .timeline:before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 4px;
-            background: repeating-linear-gradient(to right, #0052cc 0, #0052cc 8px, transparent 8px, transparent 16px);
-            top: 20px;
-            left: 0;
+            height: 100%;
+            width: 2px;
+            background-color: #ddd;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
         }
         
-        .timeline-items {
+        .timeline-dots {
             display: flex;
             justify-content: space-between;
             position: relative;
-        }
-        
-        .timeline-item {
-            text-align: center;
-            flex: 1;
-            padding: 0 10px;
+            margin-bottom: 50px;
         }
         
         .timeline-dot {
             width: 20px;
             height: 20px;
+            background-color: #0066a4;
             border-radius: 50%;
-            background-color: #0052cc;
-            margin: 0 auto 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
-            z-index: 10;
+            z-index: 2;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .timeline-dot:hover, .timeline-dot.active {
+            transform: scale(1.2);
+            background-color: #004d7a;
         }
         
         .timeline-year {
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #0052cc;
+            position: absolute;
+            top: 30px;
+            transform: translateX(-50%);
+            font-weight: 500;
+            color: #333;
         }
         
-        .timeline-text {
-            font-size: 14px;
-            color: #555;
-        }
-        
-        /* Misyon & Vizyon Bölümü */
-        .mission-vision {
+        /* Mission & Vision Boxes */
+        .mv-boxes {
             display: flex;
             justify-content: space-between;
             gap: 30px;
-            margin-top: 50px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards 0.6s;
+            margin-top: 30px;
         }
         
-        .box {
+        .mv-box {
             flex: 1;
             background-color: white;
             border-radius: 10px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
             text-align: center;
-            transition: all 0.3s ease;
+            transition: transform 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
         }
         
-        .box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        .mv-box.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
-        .box-icon {
-            font-size: 40px;
-            color: #0052cc;
-            margin-bottom: 20px;
+        .mv-box:hover {
+            transform: translateY(-5px);
         }
         
-        .box h3 {
-            font-size: 24px;
-            color: #333;
+        .mv-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f1f7fc;
+            border-radius: 50%;
+        }
+        
+        .mv-box h2 {
             margin-bottom: 15px;
+            color: #333;
+            font-size: 22px;
         }
         
-        .box p {
-            font-size: 16px;
-            line-height: 1.6;
+        .mv-box p {
             color: #555;
+            line-height: 1.7;
+            font-size: 15px;
         }
         
-        /* Alt menü */
-        .footer {
-            background-color: #333;
-            color: white;
-            padding: 30px 0;
+        /* Footer */
+        footer {
+            background-color: #f1f1f1;
+            padding: 40px;
+            border-top: 1px solid #ddd;
         }
         
         .footer-content {
             display: flex;
-            justify-content: space-between;
             flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .footer-col {
+        .footer-section {
             flex: 1;
             min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            color: #333;
             margin-bottom: 20px;
+            font-size: 20px;
+            position: relative;
+            padding-bottom: 10px;
         }
         
-        .footer-col h3 {
-            margin-bottom: 15px;
-            color: #0052cc;
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #0066a4;
         }
         
-        .footer-col ul {
-            list-style-type: none;
+        .footer-section ul {
+            list-style: none;
         }
         
-        .footer-col ul li {
+        .footer-section ul li {
             margin-bottom: 10px;
         }
         
-        .footer-col ul li a {
-            color: #ccc;
+        .footer-section ul li a {
+            color: #555;
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 15px;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
         }
         
-        .footer-col ul li a:hover {
-            color: white;
+        .footer-section ul li a:hover {
+            color: #0066a4;
         }
         
-        .copyright {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #555;
+        .footer-icon {
+            margin-right: 8px;
+            color: #0066a4;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <!-- Sabit üst menü -->
-    <header class="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="index.html">
-                    <div class="logo">
-                        <div class="logo-icon"></div>
-                        <div class="logo-text">LOJİSTİK</div>
+    <!-- Header with Logo and Navigation -->
+    <header>
+        <a href="index.html" class="logo">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+                <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#004d7a" />
+                        <stop offset="100%" style="stop-color:#0099ff" />
+                    </linearGradient>
+                </defs>
+                <circle cx="20" cy="20" r="18" fill="url(#logoGradient)" />
+                <path d="M12,20 L28,20 M20,12 L20,28" stroke="white" stroke-width="3" stroke-linecap="round" />
+                <path d="M15,15 L25,25 M15,25 L25,15" stroke="white" stroke-width="2" stroke-linecap="round" />
+                <circle cx="20" cy="20" r="5" fill="white" fill-opacity="0.3" />
+            </svg>
+            <div class="logo-text">My Logistics</div>
+        </a>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Kurumsal</a>
+                    <div class="dropdown-content">
+                        <a href="hakkimizda.html">Hakkımızda</a>
+                        <a href="#">Tarihçe</a>
+                        <a href="#">Vizyonumuz</a>
+                        <a href="#">Misyonumuz</a>
                     </div>
-                </a>
-                <ul class="menu">
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="hakkimizda.html">Kurumsal</a></li>
-                    <li><a href="#">Hizmetlerimiz</a></li>
-                    <li><a href="#">İnsan Kaynakları</a></li>
-                    <li><a href="#">İletişim</a></li>
-                </ul>
-            </nav>
-        </div>
+                </li>
+                <li>
+                    <a href="#">Hizmetlerimiz</a>
+                    <div class="dropdown-content">
+                        <a href="#">Yurt İçi Hizmetler</a>
+                        <a href="#">Yurt Dışı Hizmetler</a>
+                        <a href="#">Depolama Hizmetleri</a>
+                        <a href="#">Özel Çözümler</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">İnsan Kaynakları</a>
+                    <div class="dropdown-content">
+                        <a href="#">İK Politikası</a>
+                        <a href="#">İş Alım Süreçleri</a>
+                        <a href="#">Kariyer Fırsatları</a>
+                        <a href="#">Açık Pozisyonlar</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">İletişim</a>
+                    <div class="dropdown-content">
+                        <a href="#">Ofislerimiz</a>
+                        <a href="#">İletişim Formu</a>
+                        <a href="#">Sık Sorulan Sorular</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
     </header>
-
-    <!-- Ana içerik -->
-    <main class="main-content container">
-        <section class="about-section">
+    
+    <!-- About Content -->
+    <div class="about-content">
+        <!-- Company Info -->
+        <div class="about-header">
             <div class="about-text">
-                <h1>Lojistik Firmamız Hakkında</h1>
-                <p>2010 yılında kurulan firmamız, lojistik sektöründe güvenilir, hızlı ve ekonomik çözümler sunmayı ilke edinmiştir. Müşteri memnuniyetini ön planda tutarak, Türkiye'nin birçok şehrinde ve uluslararası alanda hizmet vermekteyiz.</p>
-                <p>Modern araç filomuz, deneyimli personelimiz ve yenilikçi teknolojik altyapımız ile sektörde fark yaratıyoruz. Müşterilerimizin değişen ihtiyaçlarına uygun çözümler geliştirerek, sürekli kendimizi yeniliyoruz.</p>
-                <p>Kaliteli hizmet anlayışımız, çevre dostu yaklaşımımız ve sosyal sorumluluk projelerimizle sürdürülebilir bir gelecek için çalışıyoruz. Her geçen gün büyüyen yapımızla, lojistik sektörüne yön veren firmaların başında gelmeyi hedefliyoruz.</p>
+                <h1>Hakkımızda</h1>
+                <p>My Logistics olarak, 2005 yılından bu yana yurt içi ve yurt dışı lojistik çözümleri sunarak, müşterilerimizin tedarik zinciri süreçlerini optimize etmelerine yardımcı oluyoruz. Müşteri odaklı hizmet anlayışımız, yenilikçi teknolojilerimiz ve uzman kadromuz ile sektörde öncü konuma gelmiş bulunmaktayız.</p>
+                <p>Türkiye'nin çeşitli bölgelerinde stratejik olarak konumlandırılmış ofislerimiz ve depolama tesislerimiz ile tam kapsamlı lojistik hizmetleri sunuyoruz. Sürekli gelişen ve büyüyen yapımızla, müşterilerimizin beklentilerini aşan çözümler üretmek için çalışıyoruz.</p>
+                <p>Bugün, kara, hava, deniz ve demiryolu taşımacılığından, depolama ve dağıtım hizmetlerine kadar uzanan geniş bir yelpazede hizmet veriyoruz. Çevresel sürdürülebilirlik ilkelerini benimseyen yaklaşımımız ve dijital dönüşüme verdiğimiz önem ile geleceğin lojistik anlayışını şekillendiriyoruz.</p>
             </div>
             <div class="about-image">
-                <img src="https://via.placeholder.com/400x300" alt="Lojistik Firma">
+                <img src="https://source.unsplash.com/random/350x250/?logistics,truck" alt="My Logistics">
             </div>
-        </section>
-
-        <section class="timeline-section">
-            <h2 class="timeline-title">Firma Tarihçemiz</h2>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="timeline-section">
             <div class="timeline">
-                <div class="timeline-items">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
+                <div class="timeline-dots">
+                    <div class="timeline-dot" onclick="showTimelineEvent(1)">
+                        <div class="timeline-year">2005</div>
+                    </div>
+                    <div class="timeline-dot" onclick="showTimelineEvent(2)">
                         <div class="timeline-year">2010</div>
-                        <div class="timeline-text">Firmamız Konya'da kuruldu</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-year">2013</div>
-                        <div class="timeline-text">Ankara şubemiz açıldı</div>
+                    <div class="timeline-dot" onclick="showTimelineEvent(3)">
+                        <div class="timeline-year">2015</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-year">2016</div>
-                        <div class="timeline-text">Uluslararası taşımacılığa başladık</div>
+                    <div class="timeline-dot" onclick="showTimelineEvent(4)">
+                        <div class="timeline-year">2020</div>
                     </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-year">2018</div>
-                        <div class="timeline-text">Afyon ve Aksaray şubelerimiz açıldı</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-year">2021</div>
-                        <div class="timeline-text">Kayseri şubemiz hizmete girdi</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
+                    <div class="timeline-dot" onclick="showTimelineEvent(5)">
                         <div class="timeline-year">2025</div>
-                        <div class="timeline-text">Sektör lideri konumuna ulaştık</div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section class="mission-vision">
-            <div class="box">
-                <div class="box-icon">&#9755;</div>
-                <h3>Misyonumuz</h3>
-                <p>Müşterilerimize en hızlı, güvenilir ve ekonomik lojistik çözümleri sunarak, her zaman beklentilerin ötesinde hizmet vermek. Teknolojik yenilikleri takip ederek sektörde fark yaratmak ve çalışanlarımızın gelişimine katkı sağlayarak mutlu bir iş ortamı oluşturmak.</p>
-            </div>
-            <div class="box">
-                <div class="box-icon">&#9733;</div>
-                <h3>Vizyonumuz</h3>
-                <p>Türkiye'nin ve dünyanın önde gelen lojistik firmaları arasında yer alarak, sektöre yön veren yenilikçi yaklaşımlarla sürdürülebilir büyüme sağlamak. Müşterilerimiz için sadece bir tedarikçi değil, güvenilir bir iş ortağı olmak ve lojistik sektöründe referans noktası haline gelmek.</p>
-            </div>
-            <div class="box">
-                <div class="box-icon">&#9875;</div>
-                <h3>Değerlerimiz</h3>
-                <p>Güvenilirlik, dürüstlük ve şeffaflık temel değerlerimizdir. Müşteri memnuniyeti odaklı çalışır, çevreye saygılı ve sosyal sorumluluk bilinciyle hareket ederiz. Ekip çalışmasına önem verir, sürekli iyileştirme ve yenilikçilik prensipleriyle her gün daha iyisi için çalışırız.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- Alt menü -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class
+        </div>
+        
+        <!-- Mission & Vision Boxes -->
+        <div class="mv-boxes">
